@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ecozon/static/css/main.247d691b.css",
+    "main.js": "/ecozon/static/js/main.b2d39277.js",
+    "static/js/787.0cd3a321.chunk.js": "/ecozon/static/js/787.0cd3a321.chunk.js",
+    "index.html": "/ecozon/index.html",
+    "main.247d691b.css.map": "/ecozon/static/css/main.247d691b.css.map",
+    "main.b2d39277.js.map": "/ecozon/static/js/main.b2d39277.js.map",
+    "787.0cd3a321.chunk.js.map": "/ecozon/static/js/787.0cd3a321.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.247d691b.css",
+    "static/js/main.b2d39277.js"
+  ]
+}
