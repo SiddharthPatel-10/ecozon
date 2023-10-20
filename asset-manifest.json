@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ecozon/static/css/main.247d691b.css",
-    "main.js": "/ecozon/static/js/main.7f4d7b69.js",
+    "main.css": "/ecozon/static/css/main.92ac5907.css",
+    "main.js": "/ecozon/static/js/main.aa319061.js",
     "static/js/787.0cd3a321.chunk.js": "/ecozon/static/js/787.0cd3a321.chunk.js",
     "index.html": "/ecozon/index.html",
-    "main.247d691b.css.map": "/ecozon/static/css/main.247d691b.css.map",
-    "main.7f4d7b69.js.map": "/ecozon/static/js/main.7f4d7b69.js.map",
+    "main.92ac5907.css.map": "/ecozon/static/css/main.92ac5907.css.map",
+    "main.aa319061.js.map": "/ecozon/static/js/main.aa319061.js.map",
     "787.0cd3a321.chunk.js.map": "/ecozon/static/js/787.0cd3a321.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.247d691b.css",
-    "static/js/main.7f4d7b69.js"
+    "static/css/main.92ac5907.css",
+    "static/js/main.aa319061.js"
   ]
 }
