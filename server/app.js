@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const connect = require("./config/db");
 const router = require("./routes/AuthRoute");
+const productRoutes = require('./routes/ProductRoute');
 
 connect.connect();
 dotenv.config();
@@ -15,6 +16,8 @@ app.use(express.json()); //this ERR, when i forgot this line :TypeError: Cannot 
 app.use(cookieParser());
 
 app.use("/api/v1/auth", router);
+app.use('/api/v1/product', productRoutes);
+
 
 app.get("/", (req, res) => {
   res.send("Hello from the server!");
