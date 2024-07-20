@@ -1,13 +1,19 @@
-import { useState } from 'react'
-import './App.css'
+import React, { useState } from "react";
+import SearchBar from "./components/SearchBar";
+import ProductList from "./components/ProductList";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [products, setProducts] = useState([]);
 
   return (
-    <>
-    <h1>welcome to ecozon</h1>
-    </>
-  )
-}
+    <div className="min-h-screen bg-gray-100">
+      <SearchBar setProducts={setProducts} />
+      <div className="p-6">
+        <ProductList products={products} />
+      </div>
+    </div>
+  );
+};
 
-export default App
+export default App;

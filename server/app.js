@@ -12,6 +12,7 @@ connect.connect();
 dotenv.config();
 
 //middlewares
+app.use(cors());
 app.use(express.json()); //this ERR, when i forgot this line :TypeError: Cannot destructure property 'name' of 'req.body' as it is undefined.
 app.use(cookieParser());
 

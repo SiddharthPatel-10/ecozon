@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 // Define the Product schema
 const productSchema = new mongoose.Schema({
@@ -19,7 +19,7 @@ const productSchema = new mongoose.Schema({
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Category',
+    ref: "Category",
     required: true,
   },
   stock: {
@@ -30,19 +30,19 @@ const productSchema = new mongoose.Schema({
   seller: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'User',
+    ref: "User",
   },
   images: [
     {
       type: String,
       required: true,
-    }
+    },
   ],
   ratings: [
     {
       user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: "User",
       },
       rating: {
         type: Number,
@@ -70,8 +70,8 @@ const productSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['Available', 'OutOfStock'],
-    default: 'Available',
+    enum: ["Available", "OutOfStock"],
+    default: "Available",
   },
   createdAt: {
     type: Date,
@@ -81,13 +81,17 @@ const productSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  brand: {
+    type: String,
+    required: true,
+  },
 });
 
 // Middleware to update the updatedAt field before saving
-productSchema.pre('save', function (next) {
+productSchema.pre("save", function (next) {
   this.updatedAt = Date.now();
   next();
 });
 
 // Export the Product model
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.model("Product", productSchema);

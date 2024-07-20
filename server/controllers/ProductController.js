@@ -6,10 +6,10 @@ const User = require('../models/User');
 exports.createProduct = async (req, res) => {
     try {
         // Get details from request body
-        const { name, description, price, category, stock, seller, images, tags } = req.body;
+        const { name, description, price, category, stock, seller, images, tags, brand } = req.body;
 
         // Validation
-        if (!name || !description || !price || !category || !stock || !seller || !images || !tags) {
+        if (!name || !description || !price || !category || !stock || !seller || !images || !tags || !brand) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required",
@@ -18,7 +18,7 @@ exports.createProduct = async (req, res) => {
 
         // Create Product 
         const newProduct = await Product.create({
-            name, description, price, category, stock, seller, images, tags
+            name, description, price, category, stock, seller, images, tags, brand
         });
 
         // Return success response with created product
@@ -145,3 +145,66 @@ exports.getProductById = async (req, res) => {
       });
     }
   };
+
+  // search controller
+  exports.searchProducts = async (req, res) => {
+    try {
+      const { query, minPrice, maxPrice } = req.query;
+  
+      const searchCriteria = {
+        $or: [
+          { name: { $regex: query, $options: 'i' } },
+          { description: { $regex: query, $options: 'i' } },
+          { brand: { $regex: query, $options: 'i' } },
+          { tags: { $regex: query, $options: 'i' } }
+        ]
+      };
+  
+      if (minPrice && maxPrice) {
+        searchCriteria.price = { $gte: minPrice, $lte: maxPrice };
+      } else if (minPrice) {
+        searchCriteria.price = { $gte: minPrice };
+      } else if (maxPrice) {
+        searchCriteria.price = { $lte: maxPrice };
+      }
+  
+      const products = await Product.find(searchCriteria);
+  
+      res.status(200).json({
+        success: true,
+        products
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: 'Error fetching products',
+        error: error.message
+      });
+    }
+  };
+
+  // Filter Products Controller
+exports.filterProducts = async (req, res) => {
+  try {
+    const { price, brand, rating } = req.query;
+
+    // Build the filter object
+    const filter = {};
+    if (price) filter.price = { $lte: parseFloat(price) };
+    if (brand) filter.brand = { $regex: new RegExp(brand, 'i') }; // Case-insensitive search
+    if (rating) filter.rating = { $gte: parseFloat(rating) };
+
+    const products = await Product.find(filter);
+
+    res.status(200).json({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching filtered products',
+      error: error.message,
+    });
+  }
+};
